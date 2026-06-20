@@ -29,7 +29,7 @@ form.addEventListener("submit", (event) => {
 });
 
 function renderTodos() {
-  list.innerHTML = "";
+  list.replaceChildren();
 
   todos.forEach((todo) => {
     const item = document.createElement("li");
@@ -50,8 +50,14 @@ function renderTodos() {
     );
     checkbox.addEventListener("change", () => {
       todo.completed = checkbox.checked;
+      checkbox.setAttribute(
+        "aria-label",
+        todo.completed
+          ? `Mark ${todo.text} incomplete`
+          : `Mark ${todo.text} complete`,
+      );
+      item.classList.toggle("completed", todo.completed);
       saveTodos();
-      renderTodos();
     });
 
     const text = document.createElement("span");
@@ -66,7 +72,7 @@ function renderTodos() {
     deleteButton.addEventListener("click", () => {
       todos = todos.filter((entry) => entry.id !== todo.id);
       saveTodos();
-      renderTodos();
+      item.remove();
     });
 
     main.append(checkbox, text);
