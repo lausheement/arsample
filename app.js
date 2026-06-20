@@ -58,18 +58,19 @@ function renderTodos() {
     text.className = "todo-text";
     text.textContent = todo.text;
 
-    const removeButton = document.createElement("button");
-    removeButton.type = "button";
-    removeButton.className = "delete-button";
-    removeButton.textContent = "Delete";
-    removeButton.addEventListener("click", () => {
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "delete-button";
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("aria-label", `Delete ${todo.text}`);
+    deleteButton.addEventListener("click", () => {
       todos = todos.filter((entry) => entry.id !== todo.id);
       saveTodos();
       renderTodos();
     });
 
     main.append(checkbox, text);
-    item.append(main, removeButton);
+    item.append(main, deleteButton);
     list.append(item);
   });
 }
