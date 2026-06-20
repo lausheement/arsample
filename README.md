@@ -11,12 +11,12 @@ This repository contains a small browser-based to-do list app with local storage
 
 ## Run
 
-Open `/home/runner/work/arsample/arsample/index.html` in a browser.
+Open `index.html` in a browser.
 
 You can also serve it locally, for example:
 
 ```bash
-cd /home/runner/work/arsample/arsample
+cd <your-project-directory>
 python3 -m http.server 8000
 ```
 

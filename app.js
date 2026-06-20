@@ -42,7 +42,12 @@ function renderTodos() {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = todo.completed;
-    checkbox.setAttribute("aria-label", `Mark ${todo.text} complete`);
+    checkbox.setAttribute(
+      "aria-label",
+      todo.completed
+        ? `Mark ${todo.text} incomplete`
+        : `Mark ${todo.text} complete`,
+    );
     checkbox.addEventListener("change", () => {
       todo.completed = checkbox.checked;
       saveTodos();
